@@ -1,0 +1,47 @@
+# Born2beRoot
+- faire un machine virtuel sans interface graphique
+- Vous devez choisir comme système d'exploitation soit la dernière version stable de Debian, soit la dernière version stable de Rocky.
+- Debian doit également être exécuté au démarrage appmore ou selinux.
+- Vous devez créer au moins 2 partitions cryptées à l'aide de LVM. Vous trouverez ci-dessous un exemple de partitionnement possible :
+  - vous devrez connaître les différences entre aptitude et apt, ou savoir ce que sont SELinux ou AppArmor.
+  - Un service SSH sera exécuté sur le port obligatoire 4242 de votre machine virtuelle.
+  - Pour des raisons de sécurité, il ne doit pas être possible de se connecter via SSH en tant que root.
+  - créant un nouveau compte. Vous devez donc comprendre son fonctionnement.
+  - Vous devez configurer votre système d'exploitation avec le pare-feu UFW (ou firewalld pour Rocky) et ainsi ne laisser ouvert que le port 4242 dans votre machine virtuelle.
+  - Votre pare-feu doit être actif lorsque vous lancez votre machine virtuelle.
+  - Le nom d'hôte de votre machine virtuelle doit être votre identifiant de connexion se terminant par 42 (par exemple, wil42). Vous devrez modifier ce nom d'hôte pendant votre évaluation.
+  - Vous devez mettre en place une politique de mots de passe forts.
+  - Vous devez installer et configurer sudo en suivant des règles strictes.
+  - En plus de l'utilisateur root, un utilisateur avec votre identifiant comme nom d'utilisateur doit être présent.
+  - Cet utilisateur doit appartenir aux groupes user42 et sudo.
+  - vous devrez créer un nouvel utilisateur et l'affecter à un groupe.
+- Pour mettre en place une politique de mot de passe forte, vous devez respecter les exigences suivantes :
+   - Votre mot de passe doit expirer tous les 30 jours.
+   - Le nombre minimum de jours autorisés avant la modification d'un mot de passe sera fixé à 2.
+   - L'utilisateur doit recevoir un message d'avertissement 7 jours avant l'expiration de son mot de passe.
+   - Votre mot de passe doit comporter au moins 10 caractères. Il doit contenir une lettre majuscule,une lettre minuscule et un chiffre. De plus, il ne doit pas contenir plus de 3caractères identiques consécutifs.
+   - Le mot de passe ne doit pas inclure le nom de l'utilisateur.
+   - La règle suivante ne s'applique pas au mot de passe root : le mot de passe doit comporterau moins 7 caractères qui ne font pas partie de l'ancien mot de passe.
+   - Bien entendu, votre mot de passe root doit être conforme à cette politique.
+- Pour configurer correctement votre groupe sudo, vous devez respecter les exigences suivantes :
+  - L'authentification à l'aide de sudo doit être limitée à 3 tentatives en cas de mot de passe incorrect.
+  - Un message personnalisé de votre choix doit s'afficher si une erreur due à un mot de passe incorrect se produit lors de l'utilisation de sudo.
+  - Chaque action utilisant sudo doit être archivée, tant les entrées que les sorties. Le fichier journal doit être enregistré dans le dossier /var/log/sudo/.
+  - Le mode TTY doit être activé pour des raisons de sécurité.
+  - Pour des raisons de sécurité également, les chemins d'accès pouvant être utilisés par sudo doivent être restreints.
+- créer un script simple appelé monitoring.sh. Il doit être développé en bash.
+- Au démarrage du serveur, le script affichera certaines informations (énumérées ci-dessous) sur tous les terminaux et toutes les 10 minutes (jetez un œil à wall). La bannière est facultative.
+- Aucune erreur ne doit être visible.
+- Votre script doit toujours être capable d'afficher les informations suivantes :
+  - L'architecture de votre système d'exploitation et la version de son noyau.
+  - Le nombre de processeurs physiques.
+  - Le nombre de processeurs virtuels.
+  - La RAM actuellement disponible sur votre serveur et son taux d'utilisation en pourcentage.
+  - L'espace de stockage actuellement disponible sur votre serveur et son taux d'utilisation en pourcentage.
+  - Le taux d'utilisation actuel de vos processeurs en pourcentage.
+  - La date et l'heure du dernier redémarrage.
+  - Si LVM est actif ou non.
+  - Le nombre de connexions actives.
+  - Le nombre d'utilisateurs utilisant le serveur.
+  - L'adresse IPv4 de votre serveur et son adresse MAC (Media Access Control).
+  - Le nombre de commandes exécutées avec le programme sudo.
