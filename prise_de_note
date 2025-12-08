@@ -1,0 +1,37 @@
+Dans le sgoinfre on a mit la derniere version stable de debian et la vm
+------INSTALLATION DE LA VM-----
+pour le nom de la vm: Born2beroot
+folder : /sgoinfre/goinfre/Perso/lleriche
+os     : /sgoinfre/goinfre/Perso/lleriche/debian-13.2.0-amd64-netinst.iso
+voir image instalation
+le hostname lleriche
+root passworld lolo123
+nouveaux Log.123.456.
+user lleriche
+passe world user lolo123
+--- PARTITION ----
+partitionage manuel
+Pour créer la première partition cliquez sur : pri/log xxGB FREE SPACE → Create a new partition → 500 MB → Primary → Beginning → Mount point → /boot → Done.
+mot de passe du disque cripter : lolo123456
+
+pour s informer sur lvm https://doc.ubuntu-fr.org/lvm
+
+Create Logical Volume → LVMGroup → {nom} → {Taille}
+
+sudo ufw delete allows port //pour en suprimmer un port 
+sudo ufw allows port //pour en creer un port
+
+Aptitude est une interface plus robuste pour les trucs apt qui peut mieux gérer les conflits de paquets. 
+En cas de conflit de paquets, `apt` ne résoudra pas le problème, tandis qu'`aptitude` suggérera une solution
+
+Ensuite, il faut ajouter notre utilisateur au groupe sudo, cela lui permettra d'utiliser les commandes en tant que super utilisateur. Pour cela on utilise la commande suivante (-aG pour add Group) :
+
+sudo usermod -aG sudo <login>
+
+Vous pouvez ensuite vérifier le fonctionnement du service ufw avec la commande sudo systemctl status ufw.
+
+la meme pour ssh sudo systemctl status ssh.
+
+pour la politique de mot passe: 
+sudo nano /etc/login.defs # Ouvre le fichier de controle de mot de passe
+
